@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDA Generator - Create Professional Non-Disclosure Agreements</title>
+    <meta name="description" content="Generate legally sound NDAs for freelancers, startups, and businesses. Create mutual, one-way, or multi-party agreements with customizable terms.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>NDA Generator</span>
+                </div>
+                <nav class="nav">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#generator" class="nav-link">Generator</a>
+                    <a href="#templates" class="nav-link">Templates</a>
+                    <a href="#about" class="nav-link">About</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Professional NDA Generator</h1>
+                    <p class="hero-subtitle">Create legally sound Non-Disclosure Agreements tailored for freelancers, startups, and businesses hiring contractors.</p>
+                    <div class="hero-features">
+                        <div class="feature">
+                            <i class="fas fa-handshake"></i>
+                            <span>Mutual NDAs</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-lock"></i>
+                            <span>One-way NDAs</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-users"></i>
+                            <span>Multi-party NDAs</span>
+                        </div>
+                    </div>
+                    <button class="cta-button" onclick="scrollToGenerator()">
+                        Start Creating <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Generator Section -->
+        <section id="generator" class="generator">
+            <div class="container">
+                <h2>Generate Your NDA</h2>
+                <p class="section-subtitle">Follow our step-by-step process to create a professional, enforceable NDA</p>
+                
+                <div class="progress-bar">
+                    <div class="progress-step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Agreement Type</span>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Party Details</span>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Terms & Conditions</span>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <span class="step-number">4</span>
+                        <span class="step-label">Review & Download</span>
+                    </div>
+                </div>
+
+                <form id="nda-form" class="generator-form">
+                    <!-- Step 1: Agreement Type -->
+                    <div class="form-step active" data-step="1">
+                        <h3>Select Agreement Type</h3>
+                        <div class="agreement-types">
+                            <div class="type-card" data-type="mutual">
+                                <i class="fas fa-handshake"></i>
+                                <h4>Mutual NDA</h4>
+                                <p>Both parties share confidential information with each other</p>
+                                <div class="type-features">
+                                    <span>Two-way protection</span>
+                                    <span>Equal obligations</span>
+                                    <span>Common for partnerships</span>
+                                </div>
+                            </div>
+                            <div class="type-card" data-type="oneway">
+                                <i class="fas fa-lock"></i>
+                                <h4>One-way NDA</h4>
+                                <p>Only one party discloses confidential information</p>
+                                <div class="type-features">
+                                    <span>Single-party disclosure</span>
+                                    <span>Employee/contractor use</span>
+                                    <span>Simple structure</span>
+                                </div>
+                            </div>
+                            <div class="type-card" data-type="multiparty">
+                                <i class="fas fa-users"></i>
+                                <h4>Multi-party NDA</h4>
+                                <p>Three or more parties share confidential information</p>
+                                <div class="type-features">
+                                    <span>Complex agreements</span>
+                                    <span>Multiple stakeholders</span>
+                                    <span>Joint ventures</span>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="agreement-type" name="agreement-type" required>
+                        <div class="step-navigation">
+                            <button type="button" class="btn btn-secondary" onclick="nextStep(2)">Next Step</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Party Details -->
+                    <div class="form-step" data-step="2">
+                        <h3>Party Information</h3>
+                        <div id="party-forms">
+                            <!-- Dynamic content based on agreement type -->
+                        </div>
+                        <div class="step-navigation">
+                            <button type="button" class="btn btn-outline" onclick="prevStep(1)">Previous</button>
+                            <button type="button" class="btn btn-secondary" onclick="nextStep(3)">Next Step</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Terms & Conditions -->
+                    <div class="form-step" data-step="3">
+                        <h3>Terms & Conditions</h3>
+                        <div class="terms-grid">
+                            <div class="form-group">
+                                <label for="confidentiality-period">Confidentiality Period</label>
+                                <select id="confidentiality-period" name="confidentiality-period" required>
+                                    <option value="">Select period</option>
+                                    <option value="1">1 year</option>
+                                    <option value="3">3 years</option>
+                                    <option value="5">5 years</option>
+                                    <option value="10">10 years</option>
+                                    <option value="indefinite">Indefinite</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="governing-law">Governing Law</label>
+                                <select id="governing-law" name="governing-law" required>
+                                    <option value="">Select jurisdiction</option>
+                                    <option value="us-federal">US Federal Law</option>
+                                    <option value="california">California</option>
+                                    <option value="new-york">New York</option>
+                                    <option value="texas">Texas</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="canada">Canada</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="purpose">Purpose of Disclosure</label>
+                                <textarea id="purpose" name="purpose" placeholder="Describe the purpose for sharing confidential information" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exceptions">Permitted Disclosures</label>
+                                <textarea id="exceptions" name="exceptions" placeholder="List any exceptions to confidentiality (e.g., information already public, required by law)" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="legal-notice">
+                            <p><strong>Note:</strong> This document will be generated as a PDF. Please review all details carefully before downloading.</p>
+                        </div>
+                        <div class="step-navigation">
+                            <button type="button" class="btn btn-outline" onclick="prevStep(2)">Previous</button>
+                            <button type="button" class="btn btn-secondary" onclick="nextStep(4)">Next Step</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Review & Download -->
+                    <div class="form-step" data-step="4">
+                        <h3>Review & Download</h3>
+                        <div class="review-section">
+                            <div id="nda-preview" class="nda-preview">
+                                <h4>Non-Disclosure Agreement Preview</h4>
+                                <div id="preview-content">
+                                    <!-- Dynamic preview content -->
+                                </div>
+                            </div>
+                            <div class="download-options">
+                                <button type="button" class="btn btn-primary" onclick="downloadNDA('pdf')">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </button>
+                                <button type="button" class="btn btn-outline" onclick="downloadNDA('doc')">
+                                    <i class="fas fa-file-word"></i> Download DOC
+                                </button>
+                                <button type="button" class="btn btn-outline" onclick="saveTemplate()">
+                                    <i class="fas fa-save"></i> Save as Template
+                                </button>
+                            </div>
+                        </div>
+                        <div class="step-navigation">
+                            <button type="button" class="btn btn-outline" onclick="prevStep(3)">Previous</button>
+                            <button type="button" class="btn btn-primary" onclick="generateNDA()">Generate Final NDA</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Templates Section -->
+        <section id="templates" class="templates">
+            <div class="container">
+                <h2>Saved Templates</h2>
+                <p class="section-subtitle">Access your previously saved NDA templates</p>
+                <div class="templates-header">
+                </div>
+                <div id="templates-list" class="templates-grid">
+                    <!-- Dynamic templates list -->
+                    <div class="empty-state">
+                        <i class="fas fa-folder-open"></i>
+                        <p>No saved templates yet</p>
+                        <p>Create your first NDA to save it as a template</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legal Disclaimer -->
+        <section class="disclaimer">
+            <div class="container">
+                <div class="disclaimer-content">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Legal Disclaimer</h3>
+                    <p>This NDA generator provides templates for informational purposes only. While we strive to create comprehensive and legally sound documents, we are not a law firm and cannot provide legal advice. The generated agreements should be reviewed by a qualified attorney before use. Laws vary by jurisdiction and specific circumstances.</p>
+                    <p><strong>Always consult with a licensed attorney</strong> to ensure your NDA meets all legal requirements for your specific situation and jurisdiction.</p>
+                </div>
+            </div>
+        </section>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Our NDA Generator</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Why Choose Our NDA Generator?</h3>
+                    <p>Our NDA Generator is designed to help businesses, freelancers, and entrepreneurs create professional, legally-sound non-disclosure agreements quickly and efficiently. We understand the importance of protecting sensitive information in today's business environment.</p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <img src="../photo 1.jpg" alt="Professional templates" class="feature-image">
+                            <i class="fas fa-check-circle"></i>
+                            <h4>Professional Templates</h4>
+                            <p>Crafted by legal experts to ensure comprehensive protection</p>
+                        </div>
+                        <div class="about-feature">
+                            <img src="../Photo 3.jpg" alt="Security and privacy" class="feature-image">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Secure & Private</h4>
+                            <p>Your data stays on your device - we don't store any sensitive information</p>
+                        </div>
+                        <div class="about-feature">
+                            <img src="../Photo 4.jpg" alt="Quick and easy" class="feature-image">
+                            <i class="fas fa-bolt"></i>
+                            <h4>Quick & Easy</h4>
+                            <p>Generate your NDA in minutes with our intuitive step-by-step process</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NDA Generator</h4>
+                    <p>Professional non-disclosure agreement creation for modern businesses.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">NDA Guide</a></li>
+                        <li><a href="#">Legal FAQ</a></li>
+                        <li><a href="#">Contact Attorney</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NDA Generator. All rights reserved. Not a substitute for legal advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
